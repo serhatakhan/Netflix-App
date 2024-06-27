@@ -17,6 +17,7 @@ const Home = () => {
     <View style={screenStyle.container}>
       <FlatList
         data={widgets}
+        showsVerticalScrollIndicator={false}
         renderItem={({item}) => <Section item={item} />}
         keyExtractor={item => item.id}
       />
