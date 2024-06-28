@@ -16,7 +16,7 @@ const Header = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingTop: insets.top,
-        paddingBottom: insets.bottom,
+        paddingBottom: insets.bottom - 10, // -10 biz azalttık
         paddingLeft: insets.left + 5, // +5'de biz ekledik
         paddingRight: insets.right + 5, // +5'de biz ekledik
         backgroundColor: appColors.PRIMARY,
