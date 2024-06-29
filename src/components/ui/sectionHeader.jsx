@@ -6,12 +6,12 @@ import {MOVIELIST} from '../../utils/routes';
 
 const SectionHeader = props => {
   const navigation = useNavigation();
-  const {title} = props;
+  const {title, value} = props;
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <Pressable onPress={() => navigation.navigate(MOVIELIST)}>
+      <Pressable onPress={() => navigation.navigate(MOVIELIST, {value: value})}>
         <Text style={[styles.title, styles.seeAll]}>See All</Text>
       </Pressable>
     </View>

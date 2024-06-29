@@ -4,3 +4,6 @@ export const POPULAR_URL = 'movie/popular';
 export const UPCOMING_URL = 'movie/upcoming';
 export const TOP_RATED_URL = 'movie/top_rated';
 export const NOW_PLAYING_URL = 'movie/now_playing';
+export const FAVORITE_URL = '/favorite/movies';
+export const ADD_FAVORITE_URL = '/favorite';
+export const ACCOUNT_URL = 'account/';

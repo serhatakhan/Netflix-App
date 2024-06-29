@@ -11,7 +11,7 @@ import { appColors } from '../../theme/colors';
 
 const HeroCarousel = () => {
   const {popularMovies} = useSelector(state => state.movies);
-  console.log(popularMovies);
+  // console.log(popularMovies);
 
   return (
     <View style={styles.container}>
@@ -26,14 +26,14 @@ const HeroCarousel = () => {
               style={{
                 width: width*0.95,
                 height: height * 0.6,
-                borderRadius: 4,
+                borderRadius: 6,
               }}
               source={{
                 uri: `${IMAGE_BASE_URL}` + `${item.poster_path}`,
                 priority: FastImage.priority.normal,
                 cache: FastImage.cacheControl.web,
               }}
-              resizeMode={FastImage.resizeMode.contain}
+              resizeMode={FastImage.resizeMode.cover}
             />
             <View style={{position: "relative"}}>
                 <View style={styles.detail}>
@@ -42,7 +42,7 @@ const HeroCarousel = () => {
                 </View>
                 <LinearGradient 
                     colors={["transparent", "rgba(0,0,0,0.8)", "rgba(0,0,0,1)"]} 
-                    style={{width: width, height: height*0.5, position: "absolute", bottom: 0}}
+                    style={{width: width, height: height*0.52, position: "absolute", bottom: 0}}
                     // Geçişin başlangıç noktasını belirler. {x: 0.5, y: 0} ile ortada yatay olarak (x: 0.5), ve üstte dikey olarak (y: 0) başlar.
                     start={{x:0.5, y:0}}
                     end={{x:0.5, y:1}}
@@ -57,7 +57,7 @@ const HeroCarousel = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
+    marginBottom: 26,
     justifyContent: 'center',
     alignItems: 'center',
     width: width,

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import SectionHeader from '../ui/sectionHeader';
 import {useSelector} from 'react-redux';
 import MovieCard from './movieCard';
@@ -26,9 +26,9 @@ const Section = props => {
 
   return (
     <View>
-      <SectionHeader title={item.title} />
+      <SectionHeader title={item.title} value={item.value} />
       <FlatList
-        contentContainerStyle={{marginBottom: 15}}
+        contentContainerStyle={{marginBottom: 20}}
         horizontal
         data={getData()}
         renderItem={({item}) => <MovieCard item={item} />}

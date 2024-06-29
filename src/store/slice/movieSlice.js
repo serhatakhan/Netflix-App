@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchNowPlayingMovies, fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies} from '../actions/movieActions';
+import {fetchMovieDetail, fetchNowPlayingMovies, fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies, removeDetailData} from '../actions/movieActions';
 
 // slice, state'in bir parçasını ve bu state'i değiştiren reducer fonksiyonlarını tanımlar.
 const movieSlice = createSlice({
@@ -9,6 +9,8 @@ const movieSlice = createSlice({
     topRatedMovies: [],
     nowPlayingMovies: [],
     popularMovies: [],
+    movieDetailData: null,
+    pendingDetail: false,
     pending: null,
     error: null,
   },
@@ -57,6 +59,22 @@ const movieSlice = createSlice({
       })
       .addCase(fetchPopularMovies.rejected, (state, action) => {
         (state.pending = false), (state.error = action.payload.message);
+      })
+
+      .addCase(fetchMovieDetail.pending, state => {
+        state.pendingDetail = true;
+      })
+      .addCase(fetchMovieDetail.fulfilled, (state, action) => {
+        (state.pendingDetail = false),
+          (state.movieDetailData = action.payload); // üsttekiler gibi .result demedik. çünkü .result'ın içinde değil veriler
+      })
+      .addCase(fetchMovieDetail.rejected, (state, action) => {
+        (state.pendingDetail = false), (state.error = action.payload.message);
+      })
+
+      // detayı görülen filmden geri çıkıldığında görüntülenen veriyi silmek için:
+      .addCase(removeDetailData.fulfilled, (state, action) => {
+        (state.movieDetailData = action.payload); // yani null döndürsün dedik actionu null döndürüyor
       });
   },
 });
