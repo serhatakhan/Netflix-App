@@ -1,19 +1,20 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {MOVIEDETAIL, MOVIELIST, NETFLIX} from '../utils/routes';
+import {MOVIEDETAIL, MOVIELIST, NETFLIX, NOTIFICATION} from '../utils/routes';
 import TabNavigator from './TabNavigator';
 import MovieList from '../screens/movieList';
 import Header from '../components/router/header';
 import MovieDetail from '../screens/movieList/movieDetail';
 import {Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { appColors } from '../theme/colors';
-import { useNavigation } from '@react-navigation/native';
+import {appColors} from '../theme/colors';
+import {useNavigation} from '@react-navigation/native';
+import Notification from '../screens/notification';
 
 const Stack = createNativeStackNavigator();
 
 function RootNavigator() {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name={NETFLIX} component={TabNavigator} />
@@ -22,7 +23,7 @@ function RootNavigator() {
         component={MovieList}
         options={{
           headerShown: true,
-          header: () => <Header />,
+          header: (props) => <Header {...props} />,
         }}
       />
       <Stack.Screen
@@ -31,13 +32,27 @@ function RootNavigator() {
         options={{
           headerShown: true,
           headerBackTitleVisible: false,
-          headerTitle: "",
+          headerTitle: '',
           headerTransparent: true,
           headerLeft: () => (
-            <Pressable style={{backgroundColor: appColors.YELLOW, padding:5, borderRadius:100}} onPress={()=> navigation.goBack()}>
+            <Pressable
+              style={{
+                backgroundColor: appColors.YELLOW,
+                padding: 5,
+                borderRadius: 100,
+              }}
+              onPress={() => navigation.goBack()}>
               <Icon name="return-up-back" size={30} color={appColors.WHITE} />
             </Pressable>
           ),
+        }}
+      />
+      <Stack.Screen
+        name={NOTIFICATION}
+        component={Notification}
+        options={{
+          headerShown: true,
+          header: (props) => <Header {...props} />,
         }}
       />
     </Stack.Navigator>

@@ -1,14 +1,21 @@
 import React, {Component} from 'react';
-import {View, Image, Text} from 'react-native';
+import {View, Image, Text, Pressable} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {appColors} from '../../theme/colors';
 import {width} from '../../utils/constants';
 import Icon from 'react-native-vector-icons/Feather';
 import LogoutIcon from 'react-native-vector-icons/SimpleLineIcons';
+import BackIcon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
+import { NOTIFICATION } from '../../utils/routes';
+import { useSelector } from 'react-redux';
 
-const Header = () => {
+const Header = (props) => {
   // çentik dikkate alınarak kenar boşluklarının ayarlanması için. açıklama aşağıda
   const insets = useSafeAreaInsets();
+  const name = props?.route?.name // basılan ekrana gittiğimde ekranın adını alabiliyorum. buna göre header'da bazı ikonları göstericem veya göstermeyeceğim.
+  const navigation = useNavigation()
+  const {count} = useSelector(state => state.notification)
 
   return (
     <View
@@ -23,8 +30,15 @@ const Header = () => {
         flexDirection: 'row',
       }}>
       <View style={{flex: 1, alignItems: "flex-start"}}>
-        <LogoutIcon name="logout" size={25} color={appColors.WHITE} />
+        {name ? (
+          <Pressable onPress={()=> navigation.goBack()}>
+            <BackIcon name="chevron-back-outline" size={30} color={appColors.WHITE} />
+          </Pressable>
+        ):(
+          <LogoutIcon name="logout" size={25} color={appColors.WHITE} />
+        )}
       </View>
+
       <View style={{flex: 3, justifyContent: 'center', alignItems: 'center'}}>
         <Image
           source={require('../../assets/images/logo.png')}
@@ -37,7 +51,14 @@ const Header = () => {
       </View>
       <View style={{flexDirection: "row", alignItems: "center", justifyContent: "flex-end", gap: 8, flex: 1}}>
         <Icon name="search" size={26} color={appColors.WHITE} />
-        <Icon name="bell" size={26} color={appColors.WHITE} />
+        {!name && (
+          <Pressable onPress={()=> navigation.navigate(NOTIFICATION)}>
+            <Icon name="bell" size={26} color={appColors.WHITE} />
+            <View style={{backgroundColor: "red", justifyContent: "center", alignItems: "center", padding: 1, borderRadius: 100, width: 18, height: 18, position: "absolute", right:-2, top:-6}}>
+              <Text style={{color: appColors.WHITE, fontSize: 12}}>{count}</Text>
+            </View>
+          </Pressable>
+        )}
       </View>
     </View>
   );

@@ -16,6 +16,7 @@ import { addFavoriteMovie, fetchFavoriteMovie } from '../../store/actions/favori
 
 const MovieDetail = ({route}) => {
   const {movieId} = route?.params;
+  // console.log(movieId);
   // * navigation.navigate(MOVIEDETAIL, {movieId: item.id} -> şeklinde bu sayfaya yönlendik 2 farklı sayfadan.
   // yönlenirken aynı yazdığımızdan emin olmalıyız. yoksa bu sayfa patlar buga girer.
   const dispatch = useDispatch();
