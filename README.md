@@ -4,17 +4,17 @@ Netflix Clone App, a React Native project that replicates the core functionaliti
 
 ## Features
 
-Movie Listing Screen: Browse a comprehensive list of movies.
+**Movie Listing Screen:** Browse a comprehensive list of movies.
 
-Favorites Screen: Select and view your favorite movies.
+**Favorites Screen:** Select and view your favorite movies.
 
-Upcoming Movies: Stay updated with movies that are yet to be released.
+**Upcoming Movies:** Stay updated with movies that are yet to be released.
 
-Top Rated Movies: Discover the highest-rated movies.
+**Top Rated Movies:** Discover the highest-rated movies.
 
-Now Playing Movies: Check out the movies currently playing in theaters.
+**Now Playing Movies:** Check out the movies currently playing in theaters.
 
-Popular Movies Carousel: Enjoy a swiper carousel showcasing popular movies.
+**Popular Movies Carousel:** Enjoy a swiper carousel showcasing popular movies.
 
 ## Used Techs
 
